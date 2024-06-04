@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuida del Agua</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        section {
+            margin-bottom: 2em;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 0.3em;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 1.2em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 1em;
+        }
+
+        input, textarea {
+            padding: 0.5em;
+            margin-top: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 1em;
+            padding: 0.5em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar si el formulario de compromiso está presente antes de añadir el listener
+            var commitmentForm = document.getElementById('commitment-form');
+            if (commitmentForm) {
+                commitmentForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    var name = document.getElementById('name').value;
+                    var email = document.getElementById('email').value;
+                    var pledge = document.getElementById('pledge').value;
+                    
+                    var messageDiv = document.getElementById('message');
+                    messageDiv.innerHTML = `<p>Gracias, ${name}, por comprometerte a cuidar del agua. Te hemos enviado un correo a ${email} con más información.</p>`;
+                    
+                    // Aquí puedes agregar el código para enviar los datos del formulario a un servidor o servicio de almacenamiento
+                    // Por ejemplo, usando Fetch API o Axios para hacer una solicitud POST
+                });
+            }
+
+            // Añadir listener al botón "Iniciar"
+            document.getElementById('start-button').addEventListener('click', function() {
+                var accessToken = document.getElementById('accessToken').value; // Guardar el accessToken en el sistema
+                window.localStorage.setItem("accessToken", accessToken);
+                
+                // Verificar si el accessToken fue guardado correctamente
+                if (window.localStorage.getItem("accessToken")) {
+                    // Usar window.location.assign para redirigir
+                    window.location.assign("paginatinaco.html"); // Asegúrate de que esta ruta es correcta
+                } else {
+                    alert("Error al guardar el AccessToken");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Cuida del Agua</h1>
+        <p>La importancia de conservar nuestro recurso más valioso</p>
+    </header>
+
+    <main>
+        <section id="about-water">
+            <h2>¿Por qué es importante cuidar el agua?</h2>
+            <p>El agua es esencial para la vida. Sin ella, no podríamos sobrevivir. Es crucial para nuestro bienestar y el de nuestro planeta.</p>
+        </section>
+
+        <section id="tips">
+            <h2>Consejos para ahorrar agua</h2>
+            <ul>
+                <li>Repara las fugas de agua en tu hogar.</li>
+                <li>Cierra el grifo mientras te cepillas los dientes.</li>
+                <li>Utiliza la lavadora y el lavavajillas con cargas completas.</li>
+                <li>Riega las plantas durante las primeras horas de la mañana o al atardecer para evitar la evaporación.</li>
+                <li>Instala dispositivos de ahorro de agua en grifos y duchas.</li>
+            </ul>
+        </section>
+
+        <section id="product">
+            <h2>Nuestro producto: AquaBoard</h2>
+            <ul>
+                <li>Se puede usar para controlar el llenado de un tinaco</li>
+                <li>Se puede usar para medir el nivel del agua de un tinaco</li>
+                <li>Cuenta con sistema de visual que te muestra en tiempo real el nivel de agua</li>
+            </ul>
+        </section>
+
+        <div id="access-token-section">
+            <h2>Ingrese AccessToken</h2>
+            <input type="text" id="accessToken" placeholder="Ingrese AccessToken">
+            <br>
+            <button id="start-button" class="btn btn-cyan">Iniciar</button>
+        </div>
+    </main>
+</body>
+</html>
+
+
+
